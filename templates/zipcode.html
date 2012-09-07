@@ -20,8 +20,8 @@
             <p>Bookmark this page to see the best movies in all of your local Redbox kiosks at a glance. You may also choose to <a href="/">select a different zip code</a>.</p>
             <ul id="movies">
                 {% for movie in results %}
-                    <li style='background: url("{{ movie.thumb }}") 0 10px no-repeat'>
-                        <a href="{{ movie.reservation_link }}" class="movie-title">{{ movie.title }}</a>
+                    <li style='background: url("{{ movie.thumb }}") 0 10px no-repeat' itemscope itemtype="http://schema.org/Movie">
+                        <a href="{{ movie.reservation_link }}" class="movie-title" itemprop="url"><span itemprop="name">{{ movie.title }}</span></a>
                         <span class="badge badge-inverse mpaa-rating {{ movie.mpaarating.lower() }}" title="MPAA Rating">{{ movie.mpaarating }}</span>
                         <span class="badge badge-inverse format {{ movie.format or movie['@format'] }}" title="Format">{{ movie.format or 'DVD' }}</span>
                         <div class="rotten_tomatoes_scores_container">
@@ -42,7 +42,7 @@
                                 <span class="badge badge-inverse audience-score" title="Rotten Tomatoes&reg; Audience Score">{{ movie.audience_score }}%</span>
                             </p>
                         </div>
-                        <div class="description">
+                        <div class="description" itemprop="description">
                             {#
                                 "synopsislong" Redbox link:
                                     In accordance with http://developer.redbox.com/legal, retrieved 2012-09-04, 2.8(c): each time the term “Redbox” appears on any page or screen in your Application, it must link to the Redbox Site;
